@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Numeros aleatorios</title>
+   <style>  /* Aqui le pondremos un css al cuerpo del documento y otro diferente al titulo (h1) */
+    body {
+  font-family: 'Open Sans', sans-serif;
+  color: darkblue;
+  font-size:14px;
+  text-align:center; /*Para que se aline al centro de la pagina */
+  cursor: pointer;
+  user-select: none;
+}
+    h1 {
+      font-family: 'Open Sans', sans-serif;
+      color: darkred;
+       }   
+    </style>
+    
+    <script>  /* la funcion muestraAleatorio te da opcion a que pongas dos numeros 
+                 y que el minimo sea mas pequeño que el grande  */
+         function muestraAleatorio(){
+		var min = Number(document.getElementById("min").value);
+        var max = Number(document.getElementById("max").value);
+        if (min>max){
+        document.getElementById("error").innerHTML="¡ERROR!  MINIMO NO PUEDE SER MAS GRANDE QUE MAXIMO";
+       }else{
+           var numero = aleatorio(min,max);
+        document.getElementById("resultado").value = numero; 
+        document.getElementById("error").innerHTML="";
+           
+           ponerImagen(numero);
+           ponerSonido(numero);
+					}     
+       }
+        function aleatorio(min,max){ /* Esta funcion te saca el numero aleatorio entre los seleccionados */
+  return Math.floor( (Math.random()* (max-min+1)) ) + min;
+       }
+        
+        function ponerImagen(n){ /* Esta funcion es para sacar la imagen de los numeros del 1 al 10 */
+            var img = document.getElementById("imagen");
+            var numeros = ["cero", "uno","dos","tres","cuatro","cinco","seis","siete","ocho","nueve","diez"];
+            if (n>=0 && n<=10){
+                img.src="imagenes/" + numeros[n] + ".png";
+                img.alt= numeros[n];
+            } else {
+                img.src="imagenes/numeros.png";
+                img.alt="numeros";
+            }
+           
+         } 
+        function ponerSonido(n) { /* Esta funcion es para sacar el sonido de los numeros del 1 al 10 */
+            var sonido = document.getElementById("audio");
+            var numeros = ["cero", "uno","dos","tres","cuatro","cinco","seis","siete","ocho","nueve","diez"];
+            if (n>=0 && n<=10){
+                sonido.src="sonidos/" + numeros[n] + ".ogg";
+                
+            } else {
+                sonido.src="sonidos/numeros.ogg";
+                
+            }
+            
+        }
+    </script>
+    </head>
+<body>
+  <h1>Generar número aleatorios</h1>
+  <form>
+   <p>Mínimo: <input type="text" maxLength="5" size="5" id="min"></p>
+   <p>Máximo: <input maxLength=5 size=5 id="max"/></p>
+   
+    <p><input onclick=muestraAleatorio() type=button value="Genera aleatorio"/></p>
+    <p> Número aleatorio entre el mínimo y el máximo : <input maxLength=5 size=5 id="resultado"/></p>
+    <p><img id="imagen" src="imagenes/numeros.png" alt="imagenNumeros" width="200" height="200"></p>
+    <p><audio id="audio" src="sonidos/numero.ogg" controls></audio></p>  
+    <div id="error"></div>
+     
+ </form>
+</body>
+</html>
