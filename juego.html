@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es"> 
+    <head>
+        <meta charset="UTF-8" >
+        <title>Juego Adivina Número</title>
+        <script src="script.js" ></script>
+        <style> 
+            body{font-size: 20px;font-family: cursive; background-image: url(adivina-el-numero.jpg);} /* Aqui metemos la imagen de fondo de la practica */
+            head{font-size: 20px;font-family: cursive;} 
+            form{font-size: 20px;text-align: center;}
+        </style>
+    </head>
+    <body onload="generaLista();">
+     <div class="container"> 
+        <br/> <!-- Estos saltos de linea son para que quede mas centrada la instrucciones de la pagina -->
+        <br/> 
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+         <div class="row align-items-start">
+            <form class="form-horizontal" >
+               <label id="descintentos" for="intentos" class="control-label col-xs-3"><strong>Intentos: </strong></label>
+               <select class="form-control" id="intentos" onchange="oculta();muestraIntentos();"> 
+               </select>
+                <label for="numero"><strong>Ingrese Número: </strong></label>
+               <input id="numero" onchange="validarNumero(this.value)"/>
+               <input type="button" id="boton" class="btn btn-info" value="Comprueba si aciertas" onclick="muestraIntentos();comparar();borraInput(this.value);"/>
+               <br/>
+            </form>
+        </div>
+         <br/>
+         <p id="contador"></p>
+         <p id="res"></p>
+         <p id="resultado"></p>
+         <p id="noAcertado" style="display: none"></p>
+         <p id="intRestantes"></p>
+         <p id="nualeatorio"></p>
+     </div>
+    </body>
+</html>
